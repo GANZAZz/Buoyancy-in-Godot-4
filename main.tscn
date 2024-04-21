@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://b64rk3r14m5br"]
+[gd_scene load_steps=25 format=3 uid="uid://b64rk3r14m5br"]
 
 [ext_resource type="Texture2D" uid="uid://bay3ak8k8pevv" path="res://assets/kloppenheim_06_puresky_4k.exr" id="1_cyo0m"]
 [ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="2_twn8n"]
 [ext_resource type="Script" path="res://Water.gd" id="3_t5r3v"]
 [ext_resource type="Script" path="res://Cube.gd" id="3_wnrpb"]
+[ext_resource type="Shader" path="res://assets/shaders/ColorLimiter.gdshader" id="5_msdme"]
+[ext_resource type="Texture2D" uid="uid://bin4yeou0ftcw" path="res://icon.svg" id="6_vrmf8"]
+[ext_resource type="PackedScene" uid="uid://dkyt7lh3q3wer" path="res://Prefabs/player_ship.tscn" id="7_3xn4v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vcvt7"]
 panorama = ExtResource("1_cyo0m")
@@ -49,11 +52,11 @@ noise = SubResource("FastNoiseLite_jbi1g")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0n3y0"]
 render_priority = 0
 shader = ExtResource("2_twn8n")
-shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
-shader_parameter/albedo2 = Color(0, 0.47451, 0.764706, 1)
-shader_parameter/color_deep = Color(0.105882, 0.294118, 0.329412, 1)
-shader_parameter/color_shallow = Color(0, 0.552941, 0.65098, 1)
-shader_parameter/metallic = 0.0
+shader_parameter/albedo = Color(0.140988, 0.189122, 0.582419, 1)
+shader_parameter/albedo2 = Color(0, 1, 0.690196, 1)
+shader_parameter/color_deep = Color(0, 0.498039, 1, 1)
+shader_parameter/color_shallow = Color(0.0901961, 0.12549, 0.219608, 0.854902)
+shader_parameter/metallic = 1.0
 shader_parameter/roughness = 0.02
 shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
@@ -61,10 +64,10 @@ shader_parameter/wave_2_direction = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
 shader_parameter/wave_speed = 0.2
 shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 2.0
+shader_parameter/height_scale = 1.5
 shader_parameter/beers_law = 0.089
 shader_parameter/depth_offset = -0.75
-shader_parameter/edge_scale = 0.362
+shader_parameter/edge_scale = 0.365
 shader_parameter/near = 0.5
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(1, 1, 1, 1)
@@ -78,11 +81,77 @@ size = Vector2(500, 500)
 subdivide_width = 500
 subdivide_depth = 500
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6ag8"]
+cull_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h30gv"]
+next_pass = SubResource("StandardMaterial3D_q6ag8")
+diffuse_mode = 3
+specular_mode = 1
+
 [sub_resource type="BoxMesh" id="BoxMesh_km0el"]
+material = SubResource("StandardMaterial3D_h30gv")
 size = Vector3(5, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lu3w5"]
 size = Vector3(5, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mg4mi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70vwx"]
+shader = ExtResource("5_msdme")
+shader_parameter/color_1 = Vector4(0.0898438, 0.125, 0.21875, 1)
+shader_parameter/color_2 = Vector4(0.144531, 0.226563, 0.367188, 1)
+shader_parameter/color_3 = Vector4(0.234375, 0.367188, 0.542969, 1)
+shader_parameter/color_4 = Vector4(0.308594, 0.558594, 0.726563, 1)
+shader_parameter/color_5 = Vector4(0.449219, 0.742188, 0.824219, 1)
+shader_parameter/color_6 = Vector4(0.640625, 0.863281, 0.855469, 1)
+shader_parameter/color_7 = Vector4(0.0976563, 0.742188, 0.824219, 1)
+shader_parameter/color_8 = Vector4(0.144531, 0.335938, 0.179688, 1)
+shader_parameter/color_9 = Vector4(0.273438, 0.507813, 0.195313, 1)
+shader_parameter/color_10 = Vector4(0.457031, 0.652344, 0.261719, 1)
+shader_parameter/color_11 = Vector4(0.65625, 0.789063, 0.34375, 1)
+shader_parameter/color_12 = Vector4(0.8125, 0.851563, 0.566406, 1)
+shader_parameter/color_13 = Vector4(0.300781, 0.167969, 0.214844, 1)
+shader_parameter/color_14 = Vector4(0.476563, 0.28125, 0.253906, 1)
+shader_parameter/color_15 = Vector4(0.675781, 0.464844, 0.339844, 1)
+shader_parameter/color_16 = Vector4(0.75, 0.578125, 0.449219, 1)
+shader_parameter/color_17 = Vector4(0.839844, 0.707031, 0.578125, 1)
+shader_parameter/color_18 = Vector4(0.902344, 0.832031, 0.699219, 1)
+shader_parameter/color_19 = Vector4(0.203125, 0.109375, 0.152344, 1)
+shader_parameter/color_20 = Vector4(0.375, 0.171875, 0.171875, 1)
+shader_parameter/color_21 = Vector4(0.53125, 0.292969, 0.167969, 1)
+shader_parameter/color_22 = Vector4(0.742188, 0.464844, 0.167969, 1)
+shader_parameter/color_23 = Vector4(0.867188, 0.617188, 0.253906, 1)
+shader_parameter/color_24 = Vector4(0.90625, 0.753906, 0.4375, 1)
+shader_parameter/color_25 = Vector4(0.140625, 0.0820313, 0.152344, 1)
+shader_parameter/color_26 = Vector4(0.253906, 0.113281, 0.191406, 1)
+shader_parameter/color_27 = Vector4(0.457031, 0.140625, 0.21875, 1)
+shader_parameter/color_28 = Vector4(0.644531, 0.1875, 0.1875, 1)
+shader_parameter/color_29 = Vector4(0.808594, 0.339844, 0.234375, 1)
+shader_parameter/color_30 = Vector4(0.851563, 0.523438, 0.242188, 1)
+shader_parameter/color_31 = Vector4(0.117188, 0.113281, 0.222656, 1)
+shader_parameter/color_32 = Vector4(0.25, 0.152344, 0.316406, 1)
+shader_parameter/color_33 = Vector4(0.476563, 0.210938, 0.480469, 1)
+shader_parameter/color_34 = Vector4(0.632813, 0.242188, 0.546875, 1)
+shader_parameter/color_35 = Vector4(0.773438, 0.152344, 0.316406, 1)
+shader_parameter/color_36 = Vector4(0.871094, 0.515625, 0.644531, 1)
+shader_parameter/color_37 = Vector4(0.0351563, 0.0390625, 0.078125, 1)
+shader_parameter/color_38 = Vector4(0.0625, 0.078125, 0.121094, 1)
+shader_parameter/color_39 = Vector4(0.0820313, 0.113281, 0.15625, 1)
+shader_parameter/color_40 = Vector4(0.125, 0.179688, 0.214844, 1)
+shader_parameter/color_41 = Vector4(0.222656, 0.289063, 0.3125, 1)
+shader_parameter/color_42 = Vector4(0.339844, 0.445313, 0.464844, 1)
+shader_parameter/color_43 = Vector4(0.503906, 0.589844, 0.585938, 1)
+shader_parameter/color_44 = Vector4(0.65625, 0.707031, 0.695313, 1)
+shader_parameter/color_45 = Vector4(0.777344, 0.808594, 0.796875, 1)
+shader_parameter/color_46 = Vector4(0.917969, 0.925781, 0.910156, 1)
 
 [node name="Main" type="Node3D"]
 
@@ -94,15 +163,18 @@ transform = Transform3D(-0.940098, 0.0859291, -0.329897, -0.23722, -0.859886, 0.
 shadow_enabled = true
 
 [node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9826, -0.464153, -1.21051)
 mesh = SubResource("PlaneMesh_0xwda")
 script = ExtResource("3_t5r3v")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.0305324, 0.321287, -0.94649, 0, 0.946931, 0.321437, 0.999534, -0.00981422, 0.0289121, -11.6034, 4.14286, 1.45379)
+[node name="Water2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -499.9)
+mesh = SubResource("PlaneMesh_0xwda")
+script = ExtResource("3_t5r3v")
 
 [node name="Cube" type="RigidBody3D" parent="."]
 transform = Transform3D(-0.761663, 0, -0.647974, 0, 1, 0, 0.647974, 0, -0.761663, 0, 3.13922, 0)
-mass = 10.0
+mass = 2.15
 script = ExtResource("3_wnrpb")
 float_force = 1.3
 water_angular_drag = 0.1
@@ -141,3 +213,68 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 
 [node name="Probe9" type="Marker3D" parent="Cube/ProbeContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -5)
+
+[node name="Cube2" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.761663, 0, -0.647974, 0, 1, 0, 0.647974, 0, -0.761663, 9.87378, 6.89658, 0)
+mass = 15.0
+script = ExtResource("3_wnrpb")
+float_force = 1.3
+water_angular_drag = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube2"]
+transform = Transform3D(0.999633, 0.135499, -0.000156224, -0.0270998, 4.99683, -0.0115273, -0.000312299, 0.115274, 0.499867, 0, -0.357198, 0)
+mesh = SubResource("BoxMesh_km0el")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube2"]
+shape = SubResource("BoxShape3D_mg4mi")
+
+[node name="ProbeContainer" type="Node3D" parent="Cube2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.590401, 0)
+
+[node name="Probe" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.40767, 0, 2.74852)
+
+[node name="Probe2" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="Probe3" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 2.68532, 0, -2.69916)
+
+[node name="Probe4" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.173515, 0, 2.6317)
+
+[node name="Probe5" type="Marker3D" parent="Cube2/ProbeContainer"]
+
+[node name="Probe6" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.636887, 0, -2.66164)
+
+[node name="Probe7" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48843, 0.559893, 2.64413)
+
+[node name="Probe8" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+
+[node name="Probe9" type="Marker3D" parent="Cube2/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3985, 0, -2.43979)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 18.4379, 11, 10.2671)
+projection = 1
+size = 22.0
+far = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_70vwx")
+position = Vector2(249, 126)
+scale = Vector2(4.89063, 2.96875)
+texture = ExtResource("6_vrmf8")
+
+[node name="PlayerShip" parent="." instance=ExtResource("7_3xn4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+mass = 2.0
+float_force = 1.3
+water_angular_drag = 0.1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.10177, -1.26113, 2.62734)
+light_color = Color(0.776471, 0.513726, 0.0196078, 1)

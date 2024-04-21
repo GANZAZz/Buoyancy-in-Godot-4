@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkyt7lh3q3wer"]
+
+[ext_resource type="Script" path="res://Prefabs/scripts/MovementPlayer.gd" id="1_isihj"]
+[ext_resource type="PackedScene" uid="uid://due7kgqc4wrol" path="res://meshes/ship1.glb" id="1_yfolk"]
+[ext_resource type="PackedScene" uid="uid://cb27ry0dkgvme" path="res://meshes/polotence1.glb" id="2_75qii"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w5vwk"]
+radius = 1.0
+height = 3.0
+
+[node name="PlayerShip" type="RigidBody3D"]
+mass = 5.5
+script = ExtResource("1_isihj")
+
+[node name="ship12" parent="." instance=ExtResource("1_yfolk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2474, 0.341069, 7.43527)
+
+[node name="polotence12" parent="." instance=ExtResource("2_75qii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2063, 1.45284, 7.43338)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 10.3084, 1.27113, 7.41231)
+shape = SubResource("CapsuleShape3D_w5vwk")
+
+[node name="ProbeContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2465, 1.02999, 7.43857)
+
+[node name="Marker3D" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.971, -0.526977, 0.964)
+
+[node name="Marker3D2" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.993, -0.525, -0.945)
+
+[node name="Marker3D3" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48833, -0.53, 0.02)
+
+[node name="Marker3D4" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.457, -0.5, 0.857)
+
+[node name="Marker3D5" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.457, -0.5, -0.951)
