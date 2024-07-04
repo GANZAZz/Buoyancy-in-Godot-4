@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfqabsm2rs81d"
-path.s3tc="res://.godot/imported/ship1_apollo-100x.png-d45775f3548a7ad6d86b308bd38263be.s3tc.ctex"
+uid="uid://i8od7dya37m0"
+path.s3tc="res://.godot/imported/lighthouse_apollo-100x.png-368523b7b6c4ca4366c570f1eff67ecd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://meshes/ship1_apollo-100x.png"
-dest_files=["res://.godot/imported/ship1_apollo-100x.png-d45775f3548a7ad6d86b308bd38263be.s3tc.ctex"]
+source_file="res://meshes/lighthouse_apollo-100x.png"
+dest_files=["res://.godot/imported/lighthouse_apollo-100x.png-368523b7b6c4ca4366c570f1eff67ecd.s3tc.ctex"]
 
 [params]
 

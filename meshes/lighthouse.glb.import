@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bcbcxjsfquapu"
-path="res://.godot/imported/ship1.glb-060e7f6f09f0ade813094c5fd7ec0314.scn"
+uid="uid://dwhcn0iuwhn68"
+path="res://.godot/imported/lighthouse.glb-9e6cbfcf129c68f929189a4f32fe0115.scn"
 
 [deps]
 
-source_file="res://meshes/ship1.glb"
-dest_files=["res://.godot/imported/ship1.glb-060e7f6f09f0ade813094c5fd7ec0314.scn"]
+source_file="res://meshes/lighthouse.glb"
+dest_files=["res://.godot/imported/lighthouse.glb-9e6cbfcf129c68f929189a4f32fe0115.scn"]
 
 [params]
 

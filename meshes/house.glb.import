@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cb27ry0dkgvme"
-path="res://.godot/imported/polotence1.glb-9d546d1592ccce2977985201a8f2ce0a.scn"
+uid="uid://1hffg2v2hleq"
+path="res://.godot/imported/house.glb-493a7634c1afcd75c857f48ce62c160f.scn"
 
 [deps]
 
-source_file="res://meshes/polotence1.glb"
-dest_files=["res://.godot/imported/polotence1.glb-9d546d1592ccce2977985201a8f2ce0a.scn"]
+source_file="res://meshes/house.glb"
+dest_files=["res://.godot/imported/house.glb-493a7634c1afcd75c857f48ce62c160f.scn"]
 
 [params]
 

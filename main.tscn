@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b64rk3r14m5br"]
+[gd_scene load_steps=33 format=3 uid="uid://b64rk3r14m5br"]
 
 [ext_resource type="Texture2D" uid="uid://bay3ak8k8pevv" path="res://assets/kloppenheim_06_puresky_4k.exr" id="1_cyo0m"]
 [ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="2_twn8n"]
@@ -7,6 +7,9 @@
 [ext_resource type="Shader" path="res://assets/shaders/ColorLimiter.gdshader" id="5_msdme"]
 [ext_resource type="Texture2D" uid="uid://bin4yeou0ftcw" path="res://icon.svg" id="6_vrmf8"]
 [ext_resource type="PackedScene" uid="uid://dkyt7lh3q3wer" path="res://Prefabs/player_ship.tscn" id="7_3xn4v"]
+[ext_resource type="Shader" path="res://assets/shaders/GenerationClouds.gdshader" id="8_ttpug"]
+[ext_resource type="PackedScene" uid="uid://1hffg2v2hleq" path="res://meshes/house.glb" id="9_aaeeq"]
+[ext_resource type="PackedScene" uid="uid://dwhcn0iuwhn68" path="res://meshes/lighthouse.glb" id="10_44dgl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vcvt7"]
 panorama = ExtResource("1_cyo0m")
@@ -18,7 +21,25 @@ sky_material = SubResource("PanoramaSkyMaterial_vcvt7")
 background_mode = 2
 sky = SubResource("Sky_wc0b5")
 tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_min_cell_size = 0.621875
+sdfgi_cascade0_distance = 39.8
+sdfgi_max_distance = 636.8
 glow_enabled = true
+volumetric_fog_density = 0.0395
+volumetric_fog_emission_energy = 7.75
+volumetric_fog_gi_inject = 4.05
+volumetric_fog_anisotropy = -0.5
+volumetric_fog_length = 31.66
+volumetric_fog_detail_spread = 0.5
+volumetric_fog_ambient_inject = 0.55
+volumetric_fog_sky_affect = 0.34
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.1
+adjustment_saturation = 1.17
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hy6fq"]
 fractal_type = 2
@@ -55,7 +76,7 @@ shader = ExtResource("2_twn8n")
 shader_parameter/albedo = Color(0.140988, 0.189122, 0.582419, 1)
 shader_parameter/albedo2 = Color(0, 1, 0.690196, 1)
 shader_parameter/color_deep = Color(0, 0.498039, 1, 1)
-shader_parameter/color_shallow = Color(0.0901961, 0.12549, 0.219608, 0.854902)
+shader_parameter/color_shallow = Color(0.0901961, 0.12549, 0.219608, 1)
 shader_parameter/metallic = 1.0
 shader_parameter/roughness = 0.02
 shader_parameter/wave_time = 0.0
@@ -92,8 +113,7 @@ grow_amount = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h30gv"]
 next_pass = SubResource("StandardMaterial3D_q6ag8")
-diffuse_mode = 3
-specular_mode = 1
+albedo_color = Color(1, 0.588235, 0.211765, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_km0el"]
 material = SubResource("StandardMaterial3D_h30gv")
@@ -153,6 +173,30 @@ shader_parameter/color_44 = Vector4(0.65625, 0.707031, 0.695313, 1)
 shader_parameter/color_45 = Vector4(0.777344, 0.808594, 0.796875, 1)
 shader_parameter/color_46 = Vector4(0.917969, 0.925781, 0.910156, 1)
 
+[sub_resource type="Gradient" id="Gradient_184iv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6y7sd"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ucucl"]
+seamless = true
+color_ramp = SubResource("Gradient_184iv")
+noise = SubResource("FastNoiseLite_6y7sd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uk35u"]
+render_priority = 0
+shader = ExtResource("8_ttpug")
+shader_parameter/isSoft = false
+shader_parameter/speed = 0.009
+shader_parameter/brightness = 0.1
+shader_parameter/threshold = 1.199
+shader_parameter/fluffiness = 2.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ucucl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f3taa"]
+material = SubResource("ShaderMaterial_uk35u")
+size = Vector2(100, 100)
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -180,6 +224,7 @@ float_force = 1.3
 water_angular_drag = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.838598, 0, -2.56145)
 mesh = SubResource("BoxMesh_km0el")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
@@ -270,7 +315,7 @@ scale = Vector2(4.89063, 2.96875)
 texture = ExtResource("6_vrmf8")
 
 [node name="PlayerShip" parent="." instance=ExtResource("7_3xn4v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2835, 4.15516, 6.07213)
 mass = 2.0
 float_force = 1.3
 water_angular_drag = 0.1
@@ -278,3 +323,13 @@ water_angular_drag = 0.1
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.10177, -1.26113, 2.62734)
 light_color = Color(0.776471, 0.513726, 0.0196078, 1)
+
+[node name="clouds" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.0611, 0)
+mesh = SubResource("PlaneMesh_f3taa")
+
+[node name="house" parent="." instance=ExtResource("9_aaeeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92287, 0, 9.00583)
+
+[node name="lighthouse" parent="." instance=ExtResource("10_44dgl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5864, 0, 20.7247)
