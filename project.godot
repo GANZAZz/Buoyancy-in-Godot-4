@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Buoyancy YT"
+config/name="Shypsty shipsty ver 1.0.1"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -21,6 +25,10 @@ window/size/viewport_width=512
 window/size/viewport_height=244
 window/size/initial_position=Vector2i(1920, 1080)
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [rendering]
 

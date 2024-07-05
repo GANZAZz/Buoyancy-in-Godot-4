@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkyt7lh3q3wer"]
+[gd_scene load_steps=5 format=3 uid="uid://dkyt7lh3q3wer"]
 
 [ext_resource type="Script" path="res://Prefabs/scripts/MovementPlayer.gd" id="1_isihj"]
 [ext_resource type="PackedScene" uid="uid://bcbcxjsfquapu" path="res://meshes/ship1.glb" id="2_akx0y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_js5e7"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2tdbt"]
+
 [node name="PlayerShip" type="RigidBody3D"]
-mass = 5.5
 script = ExtResource("1_isihj")
+float_force = 5.0
+water_angular_drag = 0.2
 
 [node name="ProbeContainer" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -16,16 +19,19 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00948, 0.489413, 1.07769)
 
 [node name="Marker3D2" type="Marker3D" parent="ProbeContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07513, 0.309892, -1.05164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.075, 0.489, -1.052)
 
 [node name="Marker3D3" type="Marker3D" parent="ProbeContainer"]
-transform = Transform3D(0.988886, -0.148672, -4.85787e-10, 0.148672, 0.988886, 6.49868e-09, -4.85787e-10, -6.49868e-09, 1, -1.74887, 0.256659, 0.191546)
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -1.598, 0.489, -0.00870583)
 
 [node name="Marker3D4" type="Marker3D" parent="ProbeContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31672, 0.371191, -1.03062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.317, 0.489, -1.069)
+
+[node name="Marker3D6" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.756, 0.489, 0.042)
 
 [node name="Marker3D5" type="Marker3D" parent="ProbeContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32207, 0.40749, 1.03477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.322, 0.489, 1.129)
 
 [node name="ship12" parent="." instance=ExtResource("2_akx0y")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -33,3 +39,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3.0571e-15, 6.99382e-08, 1.6, 1.6, -6.99382e-08, 0, 6.99382e-08, 1.6, -6.99382e-08, 0, 0.754576, 0)
 shape = SubResource("CapsuleShape3D_js5e7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 1.25278e-22, -3.65072e-31, 0, -6.55671e-08, -0.1, -1.50334e-22, 1.5, -4.37114e-09, 0, 0.788726, 0)
+mesh = SubResource("CapsuleMesh_2tdbt")
